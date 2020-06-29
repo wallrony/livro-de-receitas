@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@types/knex": "^0.16.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.1",
+    "pg": "^8.2.1",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "scripts": {
+    "dev": "nodemon src/app.ts",
+    "knex:migrate": "npx knex --knexfile knexfile.ts migrate:latest",
+    "knex:seed": "npx knex --knexfile knexfile.ts seed:run"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/node": "^14.0.14",
+    "nodemon": "^2.0.4"
+  }
+}
