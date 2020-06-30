@@ -8,9 +8,13 @@ class Recipe {
   List<Ingredient> _ingredients;
 
   int get id => _id;
+
   String get name => _name;
+
   String get prepareDescription => _prepareDescription;
+
   String get time => _time;
+
   List<Ingredient> get ingredients => _ingredients;
 
   Recipe(id, name, prepareDescription, time, ingredients) {
@@ -26,7 +30,9 @@ class Recipe {
     _name = json['name'];
     _prepareDescription = json['prepareDescription'];
     _time = json['time'];
-    _ingredients = json['ingredients'];
+    _ingredients = json['ingredients'].map<Ingredient>(
+      (object) => Ingredient.fromJson(object),
+    ).toList();
   }
 
   Map<String, dynamic> toMap() {

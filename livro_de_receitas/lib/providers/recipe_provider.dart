@@ -8,17 +8,27 @@ class RecipeProvider extends BaseProvider {
   List<Recipe> get recipes => _recipes;
 
   Future<void> fetchRecipes() async {
-    if(await (await isOnline()))
+    if(!(await isOnline()))
       return 'offline';
 
     setRunning(true);
 
     try {
-      final List<Recipe> recipes = await Facade().indexRecipes();
+      final recipes = await Facade().indexRecipes();
+
+      print(recipes);
+
+      if (recipes.runtimeType == String) {
+        _recipes = [];
+        setError(recipes);
+        setRunning(false);
+        return;
+      }
 
       _recipes = recipes;
     }
-    on FormatException catch(error) {
+    catch(error) {
+      print("AAAA: $error");
       _recipes = [];
     }
 

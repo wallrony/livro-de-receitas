@@ -11,14 +11,21 @@ class RecipeApi extends BaseApi {
     try {
       final response = await http.get('$apiUrl/recipes');
 
-      List<Map<String, dynamic>> recipeObjList = responseToMap(response);
+      print(response.body);
+
+      var recipeObjList = responseToMap(response).map(
+        (object) => Map<String, dynamic>.from(object),
+      ).toList();
 
       recipes = List<Recipe>();
+
+      print(recipeObjList);
 
       for (final recipeObj in recipeObjList) {
         recipes.add(Recipe.fromJson(recipeObj));
       }
     } catch (error) {
+      print("Error: $error");
       recipes =
           'Aconteceu algum erro... Por favor, tente novamente mais tarde.';
     }
