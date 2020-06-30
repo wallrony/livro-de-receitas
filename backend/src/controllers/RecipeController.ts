@@ -39,7 +39,7 @@ class RecipeController {
     return response.json(successSelected(result));
   }
   async add(request: Request, response: Response) {
-    const { name, ingredients, time } = request.body;
+    const { name, prepareDescription, ingredients, time } = request.body;
 
     if(!name || !ingredients || !time) {
       return response.json(errorValueIsMissing);
@@ -48,6 +48,7 @@ class RecipeController {
     const result = await connection('recipes')
       .insert({
         name,
+        prepareDescription,
         ingredients: JSON.stringify(ingredients),
         time
       });
@@ -56,7 +57,7 @@ class RecipeController {
   }
   async edit(request: Request, response: Response) {
     const id: number = Number(request.params.id ?? 0);
-    const { name, ingredients, time } = request.body;
+    const { name, prepareDescription, ingredients, time } = request.body;
 
     if(id < 1) {
       return response.json(errorIdIsMissing);
@@ -68,6 +69,7 @@ class RecipeController {
     const result = await connection('recipes')
       .update({
         name,
+        prepareDescription,
         ingredients: JSON.stringify(ingredients),
         time
       }).where('id', '=', id);
