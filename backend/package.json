@@ -2,7 +2,7 @@
   "dependencies": {
     "@types/knex": "^0.16.1",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "knex": "^0.21.1",
     "pg": "^8.2.1",
     "ts-node": "^8.10.2",
